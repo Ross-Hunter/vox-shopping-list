@@ -4,9 +4,33 @@ class Form extends Component {
   render() {
     return (
       <div className="Form">
-        Form
+        <form onSubmit={this.handleSubmit}>
+          Name: <input type="text"
+                       onChange={this.handleNameChange} />
+          &nbsp;
+          Price: <input type="number"
+                        onChange={this.handlePriceChange} />
+          <button type="submit">Add Item</button>
+        </form>
       </div>
     );
+  }
+
+  handleNameChange = (e) => {
+    this.setState({
+      name: e.target.value
+    });
+  }
+
+  handlePriceChange = (e) => {
+    this.setState({
+      price: Number(e.target.value)
+    });
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.addNewItemCallback(this.state);
   }
 }
 
