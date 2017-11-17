@@ -9,6 +9,8 @@ class Form extends Component {
                        onChange={this.handleNameChange} />
           &nbsp;
           Price: <input type="number"
+                        step="0.01"
+                        min="0"
                         onChange={this.handlePriceChange} />
           <button type="submit">Add Item</button>
         </form>
