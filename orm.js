@@ -1,9 +1,7 @@
 const pg = require('pg');
-
-const connectionUrl = process.env.DATABASE_URL || "postgres://vox@localhost:5432/shopping_list";
-
 const url = require('url');
 
+const connectionUrl = process.env.DATABASE_URL || "postgres://vox@localhost:5432/shopping_list";
 const dbUrlParams = url.parse(connectionUrl);
 const auth = dbUrlParams.auth.split(':');
 
