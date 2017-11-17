@@ -6,6 +6,8 @@ const tableName = "shopping_list_items";
 const PORT = process.env.PORT || 5000;
 const app = express();
 
+app.use(express.static('client/build'));
+
 app.use(bodyParser.json());
 
 app.get('/api/items', (req, res) => {
