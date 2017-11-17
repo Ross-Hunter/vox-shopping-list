@@ -12,6 +12,8 @@ import thunkMiddleware from "redux-thunk";
 // ./reducers folder.
 import reducer from "./reducers"
 
+import { fetchItems } from './actions/api';
+
 // Create the redux Store. This is the central hub of Redux. It keeps track of
 // the state (data) and calls the reducers.
 const store = createStore(
@@ -21,6 +23,8 @@ const store = createStore(
         createLogger()
     ) // Enable Redux logging which is handy for developers.
 );
+
+store.dispatch(fetchItems());
 
 // We need wrap our whole app in the Provider component. This lets Redux do its magic.
 ReactDOM.render(
