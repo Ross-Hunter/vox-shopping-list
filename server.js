@@ -1,18 +1,27 @@
 const express = require('express');
-const app = express();
-
+const bodyParser = require('body-parser');
 const orm = require('./orm');
 
+const tableName = "shopping_list_items";
 const PORT = process.env.PORT || 5000;
+const app = express();
+
+app.use(bodyParser.json());
 
 app.get('/api/items', (req, res) => {
-  res.send(orm.readAll());
+  const dbResult = orm.readAll(tableName);
+  dbResult.then((result) => {
+    res.send(result.rows);
+  })
 });
 
 app.post('/api/items', (req, res) => {
-  const newItem = { name: 'foo', price: 0.25 };
-  const dbResult = orm.create(newItem);
-  res.send(dbResult);
+  const newItem = req.body;
+  const dbResult = orm.create(newItem, tableName);
+  dbResult.then(result => {
+    res.status(201);
+    res.send('SUCCESS');
+  });
 });
 
 app.listen(PORT, () => {
