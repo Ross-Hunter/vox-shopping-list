@@ -1,10 +1,22 @@
 const pg = require('pg');
 
-const connectionUrl = process.env.DATABASE_URL;
+const connectionUrl = process.env.DATABASE_URL || "postgres://vox@localhost:5432/shopping_list";
 
-const pool = new pg.Pool({
-  url: connectionUrl
-});
+const url = require('url');
+
+const dbUrlParams = url.parse(connectionUrl);
+const auth = dbUrlParams.auth.split(':');
+
+const dbConfig = {
+  user: auth[0],
+  password: auth[1],
+  host: dbUrlParams.hostname,
+  port: dbUrlParams.port,
+  database: dbUrlParams.pathname.split('/')[1],
+  ssl: false
+};
+
+const pool = new pg.Pool(dbConfig);
 
 const orm = {
   readAll: function(tableName) {
