@@ -1,12 +1,9 @@
 const pg = require('pg');
 
+const connectionUrl = process.env.DATABASE_URL;
+
 const pool = new pg.Pool({
-    user: "vox",
-    password: "",
-    host: "localhost",
-    port: 5432,
-    database: "shopping_list",
-    ssl: false
+  url: connectionUrl
 });
 
 const orm = {
