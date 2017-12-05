@@ -4,7 +4,7 @@ const INITIAL_STATE = {
 
 export default function(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'RECEIVE_ITEMS':
+    case "RECEIVE_ITEMS":
       return receiveItems(state, action);
     default:
       return state;

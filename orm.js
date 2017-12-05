@@ -1,16 +1,17 @@
-const pg = require('pg');
-const url = require('url');
+const pg = require("pg");
+const url = require("url");
 
-const connectionUrl = process.env.DATABASE_URL || "postgres://vox@localhost:5432/shopping_list";
+const connectionUrl =
+  process.env.DATABASE_URL || "postgres://vox@localhost:5432/shopping_list";
 const dbUrlParams = url.parse(connectionUrl);
-const auth = dbUrlParams.auth.split(':');
+const auth = dbUrlParams.auth.split(":");
 
 const dbConfig = {
   user: auth[0],
   password: auth[1],
   host: dbUrlParams.hostname,
   port: dbUrlParams.port,
-  database: dbUrlParams.pathname.split('/')[1],
+  database: dbUrlParams.pathname.split("/")[1],
   ssl: false
 };
 
@@ -27,6 +28,6 @@ const orm = {
     const values = [newItem.price, newItem.name];
     return pool.query(sql, values);
   }
-}
+};
 
 module.exports = orm;

@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import List from './List';
-import Form from './Form';
+import List from "./List";
+import Form from "./Form";
 
-import { addNewItem } from '../actions';
+import { addNewItem } from "../actions";
 
 class ListContainer extends Component {
   render() {
@@ -17,14 +17,14 @@ class ListContainer extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     listItems: state.listItems
-  }
-}
+  };
+};
 
 const mapActionsToProps = {
   addNewItem
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)(ListContainer);
